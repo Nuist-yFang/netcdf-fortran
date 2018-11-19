@@ -879,6 +879,37 @@ Interface
 
  End Function nc_inq_var_endian
 End Interface
+!------------------------------- nc_def_var_filter ------------------------
+Interface
+ Function nc_def_var_filter(ncid, varid, id, nparams, params) BIND(C)
+
+ USE ISO_C_BINDING, ONLY: C_INT, C_SIZE_T
+
+ Integer(C_INT), VALUE :: ncid, varid, id
+
+ Integer(C_SIZE_T), VALUE :: nparams
+
+ Integer(C_INT), VALUE :: nparams(*)
+
+ Integer(C_INT)        :: nc_def_var_filter
+
+ End Function nc_def_var_filter
+End Interface
+!------------------------------- nc_inq_var_filter ----------------------------------
+Interface
+ Function nc_inq_var_filter(ncid, varid, id, nparams, params) BIND(C)
+
+ USE ISO_C_BINDING, ONLY: C_INT, C_SIZE_T
+
+ Integer(C_INT), VALUE          :: ncid, varid
+ Integer(C_INT), Intent(INOUT)  :: id
+ Integer(C_SIZE_T), Intent(INOUT) :: nparams
+ Integer(C_INT), Intent(INOUT)  :: params(*)
+
+ Integer(C_INT)                :: nc_inq_var_filter
+
+ End Function nc_inq_var_filter
+End Interface
 !------------------------------- nc_put_att -----------------------------------
 Interface
  Function nc_put_att(ncid, varid, name, xtype, nlen, op) BIND(C)
