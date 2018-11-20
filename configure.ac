@@ -513,7 +513,8 @@ nc_build_v4=no
 nc_has_logging=no
 nc_has_dap=no
 
-test "x$ac_cv_func_nc_def_opaque" = xyes && nc_build_v4=yes
+AC_CHECK_FUNCS([nc_def_opaque],[nc_build_v4=yes],[nc_build_v4=no])
+#test "x$ac_cv_func_nc_def_opaque" = xyes && nc_build_v4=yes
 test "x$ac_cv_func_nccreate" = xyes && nc_build_v2=yes
 test "x$ac_cv_func_nc_set_log_level" = xyes && nc_has_logging=yes
 test "x$ac_cv_func_oc_open" = xyes && nc_has_dap=yes
@@ -532,9 +533,9 @@ AC_MSG_RESULT([$nc_build_v2])
 AC_MSG_CHECKING([netCDF-4 present])
 AC_MSG_RESULT([$nc_build_v4])
 
-AC_MSG_CHECKING([whether to test the filter API])
-AC_ARG_ENABLE([filter-plugin],
-              [AS_HELP_STRING([--with-filter-plugin],
+AC_MSG_CHECKING([whether to test the filter API and plugin path])
+AC_ARG_WITH([filter-plugin],
+              [AS_HELP_STRING([--with-filter-plugin=<path>],
                               [Run filter tests: requires access to the plugins directory in a netcdf-c build.])],
 		[PLUGINDIR=$with_filter_plugin],[PLUGINDIR=])
 AC_MSG_RESULT([$PLUGINDIR])

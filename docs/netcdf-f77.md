@@ -5444,7 +5444,8 @@ The function NF\_INQ\_VAR\_SZIP returns the szip settings for a variable
 in a netCDF-4 file.
 
 It is not necessary to know the szip settings to read the variable.
-(Szip is completely transparent to readers of the data).
+(Szip is completely transparent to readers of the data). But an
+Szip compatible library must be installed.
 
 Usage
 -----
@@ -5830,6 +5831,12 @@ for a variable in a netCDF-4 file.
 
 This function must be called after the variable is defined, but before
 NF\_ENDDEF is called.
+
+In order to use a custom filter (other than zip or szip), it is necessary
+to install the custom filter into some directory and then to specify
+the path to that directory by setting the environment variable named
+__HDF5_PLUGIN_PATH__. For details, see the netcdf-c library documentation
+for filters: https://www.unidata.ucar.edu/software/netcdf/docs/.
 
 Usage
 -----

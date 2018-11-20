@@ -74,8 +74,10 @@ TESTS += f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5 \
          f03tst_vars6 f03tst_types f03tst_types2 f03tst_types3 f03tst_groups \
          f03tst_open_mem
 
+if TEST_FILTERS
 check_PROGRAMS += f03tst_filter 
 TESTS += tst_filter.sh
+endif
 
 CLEANFILES += ftst_vars.nc ftst_vars2.nc ftst_vars3.nc ftst_vars4.nc	\
               ftst_vars5.nc ftst_vars6.nc ftst_types.nc ftst_types2.nc \
@@ -112,7 +114,7 @@ CLEANFILES += tests.mod
 # test03_get.F and test03_put.f need to be distributed, so that the user
 # need not have m4.
 EXTRA_DIST = test03_get.F test03_put.F fills.cdl create_fills.sh	\
-run_f77_par_test.sh CMakeLists.txt run_tst_filter.sh
+run_f77_par_test.sh CMakeLists.txt run_tst_filter.sh.in
 
 test: check
 
