@@ -56,7 +56,7 @@ CLEANFILES = scratch.nc test.nc copy.nc fills.nc
 if USE_NETCDF4
 
 # Add these netCDF-4 f77 test programs.
-check_PROGRAMS += f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5	\
+check_PROGRAMS += f03tst_filter f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5	\
 f03tst_vars6 f03tst_open_mem f03tst_types f03tst_types2 f03tst_types3 \
 f03tst_groups
 f03tst_types_SOURCES = module_tests.F90 f03tst_types.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
@@ -70,7 +70,7 @@ f03tst_vars5_SOURCES = module_tests.F90 f03tst_vars5.F f03lib_f_interfaces.f90 f
 f03tst_vars6_SOURCES = module_tests.F90 f03tst_vars6.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
 f03tst_open_mem_SOURCES = module_tests.F90 f03tst_open_mem.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
 f03tst_groups_SOURCES = module_tests.F90 f03tst_groups.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-TESTS += f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5 \
+TESTS += f03tst_filter f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5 \
          f03tst_vars6 f03tst_types f03tst_types2 f03tst_types3 f03tst_groups \
          f03tst_open_mem
 CLEANFILES += ftst_vars.nc ftst_vars2.nc ftst_vars3.nc ftst_vars4.nc	\
