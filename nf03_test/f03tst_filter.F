@@ -2,7 +2,7 @@ C     This is part of the netCDF package.
 C     Copyright 2006 University Corporation for Atmospheric Research/Unidata.
 C     See COPYRIGHT file for conditions of use.
 
-C     This program tests netCDF-4 variable functions from fortran.
+C     This program tests netCDF-4 variable Filter support from fortran.
 
 C     $Id: ftst_vars.F,v 1.19 2009/09/27 21:25:23 ed Exp $
 

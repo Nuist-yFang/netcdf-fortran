@@ -532,6 +532,15 @@ AC_MSG_RESULT([$nc_build_v2])
 AC_MSG_CHECKING([netCDF-4 present])
 AC_MSG_RESULT([$nc_build_v4])
 
+AC_MSG_CHECKING([whether to test the filter API])
+AC_ARG_ENABLE([filter-plugin],
+              [AS_HELP_STRING([--with-filter-plugin],
+                              [Run filter tests: requires access to the plugins directory in a netcdf-c build.])],
+		[PLUGINDIR=$with_filter_plugin],[PLUGINDIR=])
+AC_MSG_RESULT([$PLUGINDIR])
+AM_CONDITIONAL([TEST_FILTERS], [test "x$PLUGINDIR" != x])
+AC_SUBST([PLUGINDIR], [$PLUGINDIR])
+
 AM_CONDITIONAL([USE_NETCDF4], [test "x$nc_build_v4" = xyes])
 AM_CONDITIONAL([BUILD_V2], [test "x$nc_build_v2" = xyes])
 AM_CONDITIONAL([USE_LOGGING], [test "x$nc_has_logging" = xyes])
