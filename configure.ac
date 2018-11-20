@@ -641,6 +641,7 @@ AC_CONFIG_FILES([Makefile
                  fortran/Makefile
                  nf_test/Makefile
                  nf03_test/Makefile
+                 nf03_test/run_tst_filter.sh
                  CMakeExtras/Makefile
                  examples/Makefile
                  examples/F90/Makefile
