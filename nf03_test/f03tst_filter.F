@@ -1,10 +1,14 @@
+C********************************************************************
+C   Copyright 1993, UCAR/Unidata
+C   See netcdf/COPYRIGHT file for copying and redistribution conditions.
+C   $Id: ftest.F,v 1.11 2009/01/25 14:33:45 ed Exp $
+C********************************************************************
+
 C     This is part of the netCDF package.
 C     Copyright 2006 University Corporation for Atmospheric Research/Unidata.
 C     See COPYRIGHT file for conditions of use.
 
 C     This program tests netCDF-4 variable Filter support from fortran.
-
-C     $Id: ftst_vars.F,v 1.19 2009/09/27 21:25:23 ed Exp $
 
       program ftst_vars
       USE netcdf4_f03
@@ -12,7 +16,7 @@ C     $Id: ftst_vars.F,v 1.19 2009/09/27 21:25:23 ed Exp $
 
 C     This is the name of the data file we will create.
       character*(*) FILE_NAME
-      parameter (FILE_NAME='ftst_vars.nc')
+      parameter (FILE_NAME='ftst_filter.nc')
 
 C     We are writing 2D data, a 6 x 12 grid. 
       integer NDIMS

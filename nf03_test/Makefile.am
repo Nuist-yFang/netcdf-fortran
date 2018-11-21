@@ -28,6 +28,8 @@ AM_FCFLAGS += -I$(top_srcdir)/nf_test
 
 AM_FFLAGS = ${AM_FCFLAGS}
 
+AM_TESTS_ENVIRONMENT = HDF5_PLUGIN_PATH='@PLUGINDIR@' ; export HDF5_PLUGIN_PATH ;
+
 TESTS =
 
 # All tests need to link to fortran and C libraries.
@@ -76,12 +78,13 @@ TESTS += f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5 \
 
 if TEST_FILTERS
 check_PROGRAMS += f03tst_filter 
-TESTS += tst_filter.sh
+f03tst_filter_SOURCES = module_tests.F90 f03tst_filter.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+TESTS += f03tst_filter
 endif
 
 CLEANFILES += ftst_vars.nc ftst_vars2.nc ftst_vars3.nc ftst_vars4.nc	\
               ftst_vars5.nc ftst_vars6.nc ftst_types.nc ftst_types2.nc \
-              ftst_types3.nc ftst_groups.nc f03tst_open_mem.nc
+              ftst_types3.nc ftst_groups.nc f03tst_open_mem.nc ftst_filter.nc
 
 # This is a netCDF-4 V2 test program.
 if BUILD_V2
@@ -114,7 +117,7 @@ CLEANFILES += tests.mod
 # test03_get.F and test03_put.f need to be distributed, so that the user
 # need not have m4.
 EXTRA_DIST = test03_get.F test03_put.F fills.cdl create_fills.sh	\
-run_f77_par_test.sh CMakeLists.txt run_tst_filter.sh.in
+run_f77_par_test.sh CMakeLists.txt
 
 test: check
 

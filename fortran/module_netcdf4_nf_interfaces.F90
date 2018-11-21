@@ -626,10 +626,10 @@ Interface
 End Interface
 !------------------------------- nf_def_var_filter ------------------------
 Interface
- Function nf_def_var_filter(ncid, varid, id, inparams, params) RESULT(status)
+ Function nf_def_var_filter(ncid, varid, id, nparams, params) RESULT(status)
 
- Integer, Intent(IN) :: ncid, varid, id, inparams
- Integer, Intent(IN) :: nparams(*)
+ Integer, Intent(IN) :: ncid, varid, id, nparams
+ Integer, Intent(IN) :: params(*)
  Integer                :: status
 
  End Function nf_def_var_filter
@@ -639,7 +639,7 @@ Interface
  Function nf_inq_var_filter(ncid, varid, id, inparams, params) RESULT(status)
 
  Integer, Intent(IN)     :: ncid, varid
- Integer, Intent(INOUT)  :: id,
+ Integer, Intent(INOUT)  :: id
  Integer, Intent(INOUT)  :: inparams
  Integer, Intent(INOUT)  :: params(*)
  Integer                :: status

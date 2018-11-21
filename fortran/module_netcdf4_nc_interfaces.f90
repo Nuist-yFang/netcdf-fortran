@@ -737,6 +737,20 @@ Interface
 
  End Function nc_inq_var_fill
 End Interface
+!------------------------------- nc_inq_varnparams ------------------------------
+!**** NOT a Netcdf C function. Added to nf_lib.c support Fortran interaces
+Interface
+ Function nc_inq_varnparams(ncid, varid, nparams) BIND(C)
+
+ USE ISO_C_BINDING, ONLY: C_INT, C_SIZE_T
+
+ Integer(C_INT), VALUE         :: ncid, varid
+ Integer(C_SIZE_T), Intent(INOUT) :: nparams
+
+ Integer(C_INT)                 :: nc_inq_nparams
+
+ End Function nc_inq_varnparams
+End Interface
 !------------------------------- nc_inq_var_szip ------------------------------
 Interface
  Function nc_inq_var_szip(ncid, varid, options_mask, pixels_per_block) BIND(C)
@@ -889,7 +903,7 @@ Interface
 
  Integer(C_SIZE_T), VALUE :: nparams
 
- Integer(C_INT), VALUE :: nparams(*)
+ Integer(C_INT) :: params(*)
 
  Integer(C_INT)        :: nc_def_var_filter
 

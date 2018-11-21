@@ -1850,15 +1850,15 @@
  cvarid = varid-1
  params(1) = 0
 
- cstatus1 = nc_inq_var_filter(cncid, cvarid, cfilterid, cnparams, C_NULL_PTR)
+ cstatus1 = nc_inq_varnparams(cncid, cvarid, cnparams)
 
  If (cstatus1 == NC_NOERR) Then
-   ALLOCATE(cparams(cndims))
+   ALLOCATE(cparams(cnparams))
  Else
    ALLOCATE(cparams(1))
  EndIf
 
- cstatus = nc_inq_var_filter_f(cncid, cvarid, cfilterid, cnparams, cparams)
+ cstatus = nc_inq_var_filter(cncid, cvarid, cfilterid, cnparams, cparams)
 
  If (cstatus == NC_NOERR) Then
    filterid = cfilterid
