@@ -643,7 +643,7 @@ OPTION(ENABLE_TESTS "Enable netcdf-fortran tests." ON)
 # Enable filter testing and simultaneously set the plugin path
 # Use ENABLE_FILTER_TEST=<path to use for HDF5_PLUGIN_PATH>
 #SET(ENABLE_FILTER_TEST AUTO CACHE STRING "")
-STRING(COMPARE NOT EQUAL "${ENABLE_FILTER_TEST} "" TEST_FILTER)
+STRING(COMPARE NOT EQUAL "${ENABLE_FILTER_TEST}" "" TEST_FILTER)
 
 # Set the default fortran builds; default is to build f03
 SET(BUILD_F90 "ON")
