@@ -23,6 +23,9 @@ C     We are writing 2D data, a 6 x 12 grid.
       parameter (NDIMS=2)
       integer NX, NY
       parameter (NX = 6, NY = 12)
+      integer DATAOFFSET
+C      parameter (DATAOFFSET = 2147483646)
+      parameter (DATAOFFSET = 0)
 
 C     NetCDF IDs.
       integer ncid, varid, dimids(NDIMS)
@@ -42,7 +45,7 @@ C     Loop indexes, and error handling.
 C     Create some pretend data.
       do x = 1, NX
          do y = 1, NY
-            data_out(y, x) = 2147483646 + x * y
+            data_out(y, x) = DATAOFFSET + x * y
          end do
       end do
 
@@ -76,6 +79,14 @@ C     Set bzip filter on variable
       retval = nf_def_var_filter(ncid, varid, 307, 1, params)
       if (retval .ne. nf_noerr) call handle_err(retval)
 
+      retval = nf_enddef(ncid)
+      if (retval .ne. nf_noerr) call handle_err(retval)
+
+C     Write the pretend data to the file.
+      retval = nf_put_var_int(ncid, varid, data_out)
+      if (retval .ne. nf_noerr) call handle_err(retval)
+
+C     Close the file. 
       retval = nf_close(ncid)
       if (retval .ne. nf_noerr) call handle_err(retval)
 
@@ -95,6 +106,15 @@ C     Check the filter
       if (filterid .ne. 307) stop 2
       if (nparams .ne. 1) stop 2
       if (params(1) .ne. 9) stop 2
+
+C     Read the data and check it.
+      retval = nf_get_var_int(ncid, varid, data_in)
+      if (retval .ne. nf_noerr) call handle_err(retval)
+      do x = 1, NX
+         do y = 1, NY
+            if (data_in(y, x) .ne. data_out(y, x)) stop 2
+         end do
+      end do
 
 C     Close the file. 
       retval = nf_close(ncid)
