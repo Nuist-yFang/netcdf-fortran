@@ -10,9 +10,9 @@ C     See COPYRIGHT file for conditions of use.
 
 C     This program tests netCDF-4 variable Filter support from fortran.
 
-      program ftst_vars
-      USE netcdf4_f03
+      program ftst_filter
       implicit none
+      include 'netcdf.inc'
 
 C     This is the name of the data file we will create.
       character*(*) FILE_NAME
@@ -100,7 +100,7 @@ C     Find our variable.
       if (varid .ne. 1) stop 2
 
 C     Check the filter
-      params(1) = 9
+      params(1) = -1
       retval = nf_inq_var_filter(ncid, varid, filterid, nparams, params)
       if (retval .ne. nf_noerr) call handle_err(retval)
       if (filterid .ne. 307) stop 2

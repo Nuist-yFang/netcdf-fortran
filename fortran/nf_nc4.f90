@@ -1809,8 +1809,8 @@
 
  Implicit NONE
 
- Integer, Intent(IN)    :: ncid, varid, filterid, nparams
- Integer, Intent(INOUT) :: params(*)
+ Integer, Intent(IN) :: ncid, varid, filterid, nparams
+ Integer, Intent(IN) :: params(*)
 
  Integer             :: status
 

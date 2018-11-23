@@ -76,12 +76,6 @@ TESTS += f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5 \
          f03tst_vars6 f03tst_types f03tst_types2 f03tst_types3 f03tst_groups \
          f03tst_open_mem
 
-if TEST_FILTERS
-check_PROGRAMS += f03tst_filter 
-f03tst_filter_SOURCES = module_tests.F90 f03tst_filter.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-TESTS += f03tst_filter
-endif
-
 CLEANFILES += ftst_vars.nc ftst_vars2.nc ftst_vars3.nc ftst_vars4.nc	\
               ftst_vars5.nc ftst_vars6.nc ftst_types.nc ftst_types2.nc \
               ftst_types3.nc ftst_groups.nc f03tst_open_mem.nc ftst_filter.nc

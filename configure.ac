@@ -533,14 +533,12 @@ AC_MSG_RESULT([$nc_build_v2])
 AC_MSG_CHECKING([netCDF-4 present])
 AC_MSG_RESULT([$nc_build_v4])
 
-AC_MSG_CHECKING([whether to test the filter API and plugin path])
-AC_ARG_WITH([filter-plugin],
-              [AS_HELP_STRING([--with-filter-plugin=<path>],
-                              [Run filter tests: requires access to the plugins directory in a netcdf-c build.])],
-		[PLUGINDIR=$with_filter_plugin],[PLUGINDIR=])
-AC_MSG_RESULT([$PLUGINDIR])
-AM_CONDITIONAL([TEST_FILTERS], [test "x$PLUGINDIR" != x])
-AC_SUBST([PLUGINDIR], [$PLUGINDIR])
+AC_MSG_CHECKING([whether to test the filter API])
+AC_ARG_ENABLE([filter-test],
+              [AS_HELP_STRING([--enable-filter-test],
+                              [Run filter tests: requires access to the plugins directory in a netcdf-c build.])])
+test "x$enable_filter_test" = xyes || enable_filter_test=no
+AC_MSG_RESULT($enable_filter_test)
 
 AM_CONDITIONAL([USE_NETCDF4], [test "x$nc_build_v4" = xyes])
 AM_CONDITIONAL([BUILD_V2], [test "x$nc_build_v2" = xyes])
@@ -549,6 +547,8 @@ AM_CONDITIONAL([BUILD_DAP], [test "x$nc_has_dap" = xyes])
 AM_CONDITIONAL([BUILD_PNETCDF], [test "x$nc_has_pnetcdf" = xyes])
 AM_CONDITIONAL([BUILD_PARALLEL4], [test "x$nc_has_parallel4" = xyes])
 AM_CONDITIONAL([BUILD_PARALLEL], [test "x$nc_has_pnetcdf" = xyes -o "x$nc_has_parallel4" = xyes])
+AM_CONDITIONAL([TEST_FILTERS], [test "x$enable_filter_test" = xyes])
+
 AC_CHECK_HEADER(stdlib.h, ,AC_DEFINE([NO_STDLIB_H], [], [no stdlib.h]))
 AC_CHECK_HEADER(sys/types.h, ,AC_DEFINE([NO_SYS_TYPES_H], [], [no sys_types.h]))
 AC_CHECK_HEADERS([sys/param.h])
