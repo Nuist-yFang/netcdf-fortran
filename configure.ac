@@ -108,10 +108,12 @@ AM_CONDITIONAL(EXTRA_TESTS, [test x$enable_extra_tests = xyes])
 #####
 # Determine if we want to enable doxygen-generated documentation.
 #####
+AC_MSG_CHECKING([whether netCDF documentation should be generated)])
 AC_ARG_ENABLE([doxygen],
 	[AS_HELP_STRING([--enable-doxygen],
 	[Enable generation of documentation with doxygen.])])
-    test "x$enable_doxygen" = xyes || enable_doxygen=no
+test "x$enable_doxygen" = xyes || enable_doxygen=no
+AC_MSG_RESULT($enable_doxygen)
 AM_CONDITIONAL([BUILD_DOCS], [test "x$enable_doxygen" = xyes])
 
 # Does the user want to generate dot-based documentation?
